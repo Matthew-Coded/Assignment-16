@@ -1,6 +1,7 @@
 from models import Owners, session
 from bp_auth import register, login
 from bp_owner import view_owner, update_owner, delete_owner
+from bp_pets import view_pets, create_pet, update_pet, delete_pet
 
 
 def welcome_menu():
@@ -58,27 +59,22 @@ def pets_menu(current_user):
 5.) Back""")
         choice = input("choose 1-5: ")
         if choice == '1':
-            #function that displays the current user's pets
-            pass
+            view_pets(current_user)
 
         elif choice == '2':
-            #function to create a new pet linked to the current user, add to db
-            pass
+            create_pet(current_user)
 
         elif choice == '3':
-            #function to update a particular pet 
-            pass
+            update_pet(current_user)
 
         elif choice == '4':
-            #function to delete a particuler pet
-            pass
+            delete_pet(current_user)
 
         elif choice == '5':
             return
         
         else:
             print("Invalid Selection.")
-
 
 def appointments_menu(current_user):
     while True:
@@ -106,16 +102,15 @@ def appointments_menu(current_user):
         elif choice =='5':
             return
 
-
 def main():
     # Comment this out after tested and works to be able to test quicker
-    current_user = welcome_menu() 
+    # current_user = welcome_menu() 
 
     #After you test you login and register functions, it might be more efficient
     #to set current_user to a user in your db so you don't have to log in every time
     #you want to test something.
 
-    # current_user = session.get(Owners, 1)
+    current_user = session.get(Owners, 1)
     
     if current_user:
         while True and current_user:
