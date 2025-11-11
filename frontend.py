@@ -1,5 +1,6 @@
 from models import Owners, session
 from bp_auth import register, login
+from bp_owner import view_owner
 
 
 def welcome_menu():
@@ -33,8 +34,8 @@ def owner_menu(current_user):
     4.) Back""")
         choice = input("choose 1-3: ")
         if choice == '1':
-            #view profile funtion should display the current users info
-            pass
+            view_owner(current_user)
+            
         elif choice == '2':
             #update profile function, and returns the updated user
             #on success, should set current_user to the user that is returned
